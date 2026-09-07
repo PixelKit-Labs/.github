@@ -27,5 +27,6 @@
 
 - **[pixelkit](https://github.com/PixelKit-Labs/pixelkit)** — the SDK, two Kotlin Expo Modules, the `pixelkit doctor` CLI, the docs, and the demo app that proves it all works on real hardware.
 
-Android only, and it needs a development build: the hooks talk to native modules, so Expo Go can
-never run them.
+**Android only.** Build it onto your phone with `npx expo run:android` - one command, a few minutes
+the first time. It will not run in Expo Go: reading a thermal sensor takes native code compiled into
+the app, and Expo Go only ships the native code Expo put in it.
