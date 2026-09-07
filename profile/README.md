@@ -7,11 +7,12 @@
 <h1 align="center">Google Pixel hardware as React hooks.</h1>
 
 <p align="center">
-  CPU clocks and thermal headroom, the camera, the microphone, every radio from NFC to
-  ultra-wideband, the fingerprint sensor and the keystore, and Gemini running on the phone itself.
+  32 typed hooks that give an Expo app real access to the device: per-core CPU frequencies straight
+  from cpufreq, battery temperature from the fuel gauge, the camera and microphone, every radio from
+  NFC to ultra-wideband, biometrics and the hardware keystore, and Gemini Nano running on-device.
   <br><br>
-  <strong>Nothing is simulated.</strong> A reading that cannot be taken is <code>null</code>, never
-  a plausible default.
+  Every value tells you where it came from. A reading the hardware cannot give you comes back
+  <code>null</code> instead of a guess, so <strong>you always know whether a number is real</strong>.
 </p>
 
 <p align="center">
