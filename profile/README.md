@@ -41,15 +41,11 @@ left before you should fall back to cloud.
 | [`@pixelkit-labs/mlkit`](https://www.npmjs.com/package/@pixelkit-labs/mlkit) | Kotlin module for Gemini Nano and ML Kit. Opt-in, because it adds 19 artifacts to your APK. |
 | [`@pixelkit-labs/cli`](https://www.npmjs.com/package/@pixelkit-labs/cli) | `pixelkit doctor` |
 
-## Two things to know before you start
+## Before you start
 
 **It needs a development build.** `npx expo run:android`, or an EAS development profile. PixelKit
 cannot run in Expo Go: reading a thermal sensor takes native code compiled into the app, and Expo Go
 only contains the native code Expo shipped.
-
-**Nothing is simulated.** Every hook reports `source: 'hardware' | 'derived' | 'unavailable'`. There
-is deliberately no `simulated` member, so a fabricated reading cannot be represented. A value that
-cannot be read is `null` and renders as an em dash, never a plausible default.
 
 It degrades rather than fails on other hardware: 13 of the 32 hooks are pure Expo and JavaScript and
 work on any Android device, and the rest report `unsupported` where the silicon is not there.
