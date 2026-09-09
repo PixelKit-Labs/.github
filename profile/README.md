@@ -19,10 +19,6 @@ import { useCPU, useGemini } from '@pixelkit-labs/sdk';
 import { useGeminiNano } from '@pixelkit-labs/sdk/mlkit';
 ```
 
-On-device inference is thermally expensive and capability-gated, so the kit also tells you what
-AICore actually exposes, which Gemini Nano tier a device serves, and how much thermal headroom is
-left before you should fall back to cloud.
-
 ## Repositories
 
 | | |
