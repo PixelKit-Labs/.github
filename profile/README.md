@@ -5,9 +5,9 @@
 <h1 align="center">PixelKit</h1>
 
 <p align="center">
-  An on-device AI development kit for the <b>Google Pixel 11 Pro, Pro Fold and Pro XL</b>.
-  Gemini Nano, ML Kit vision and document scanning, offline translation across 58 languages, and
-  speech both directions, as typed React hooks for TypeScript, Expo and React Native.
+  PixelKit is an SDK for building Expo and React Native applications on Google Pixel devices.
+  It provides typed React hooks for device sensors, radios, secure hardware, camera and audio,
+  display and power telemetry, haptics, on-device AI, and Cloud AI.
 </p>
 
 ```bash
