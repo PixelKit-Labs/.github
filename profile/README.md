@@ -29,7 +29,7 @@ left before you should fall back to cloud.
 | :--- | :--- |
 | **[pixelkit-sdk](https://github.com/PixelKit-Labs/pixelkit-sdk)** | The SDK and the two Kotlin Expo Modules. 32 hooks. |
 | **[pixelkit-template](https://github.com/PixelKit-Labs/pixelkit-template)** | A working Expo app wired to every hook. Press **Use this template** to start. |
-| **[pixelkit-docs](https://github.com/PixelKit-Labs/pixelkit-docs)** | The documentation, and the contract the SDK is checked against in CI. |
+| **[pixelkit-docs](https://github.com/PixelKit-Labs/pixelkit-docs)** | Source of the [documentation site](https://pixelkit-labs.github.io/pixelkit-docs/), and the contract the SDK is checked against in CI. |
 | **[pixelkit-cli](https://github.com/PixelKit-Labs/pixelkit-cli)** | `pixelkit doctor`, for when a reading comes back empty and you want to know why. |
 
 ## Packages
@@ -51,7 +51,7 @@ It degrades rather than fails on other hardware: 13 of the 32 hooks are pure Exp
 work on any Android device, and the rest report `unsupported` where the silicon is not there.
 
 <p align="center">
-  <a href="https://github.com/PixelKit-Labs/pixelkit-docs">Documentation</a>
+  <a href="https://pixelkit-labs.github.io/pixelkit-docs/">Documentation</a>
   &middot;
   <a href="https://github.com/PixelKit-Labs/pixelkit-template">Start from the template</a>
   &middot;
