@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/PixelKit-Labs/pixelkit-sdk/master/PixelKit_readme.jpg" alt="PixelKit" width="300">
-</p>
 
 <h1 align="center">PixelKit</h1>
 
