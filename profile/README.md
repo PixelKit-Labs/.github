@@ -20,7 +20,7 @@ import { useGeminiNano } from '@pixelkit-labs/sdk/mlkit';
 
 | | |
 | :--- | :--- |
-| **[pixelkit-sdk](https://github.com/PixelKit-Labs/pixelkit-sdk)** | The SDK and the two Kotlin Expo Modules. 39 hooks. |
+| **[pixelkit-sdk](https://github.com/PixelKit-Labs/pixelkit-sdk)** | The SDK and the two Kotlin Expo Modules. 51 hooks. |
 | **[pixelkit-template](https://github.com/PixelKit-Labs/pixelkit-template)** | A working Expo app wired to every hook. Press **Use this template** to start. |
 | **[pixelkit-docs](https://github.com/PixelKit-Labs/pixelkit-docs)** | Source of the [documentation site](https://pixelkit-labs.github.io/pixelkit-docs/), and the contract the SDK is checked against in CI. |
 | **[pixelkit-cli](https://github.com/PixelKit-Labs/pixelkit-cli)** | `pixelkit doctor`, for when a reading comes back empty and you want to know why. |
@@ -40,7 +40,7 @@ import { useGeminiNano } from '@pixelkit-labs/sdk/mlkit';
 cannot run in Expo Go: reading a thermal sensor takes native code compiled into the app, and Expo Go
 only contains the native code Expo shipped.
 
-It degrades rather than fails on other hardware: 13 of the 39 hooks are pure Expo and JavaScript and
+It degrades rather than fails on other hardware: 13 of the 51 hooks are pure Expo and JavaScript and
 work on any Android device, and the rest report `unsupported` where the silicon is not there.
 
 <p align="center">
