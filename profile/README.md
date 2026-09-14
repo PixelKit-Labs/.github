@@ -38,15 +38,15 @@ number the device did not produce.
 ## How the pieces fit
 
 ```mermaid
-flowchart LR
+flowchart TB
+  template["pixelkit-template"] -. "start from" .-> app
+  cli["pixelkit doctor"] -. "diagnoses" .-> app
   app["Your Expo app"] --> sdk["@pixelkit-labs/sdk"]
+  docs["pixelkit-docs"] -. "checked in CI" .-> sdk
   sdk --> native["@pixelkit-labs/native"]
   sdk --> mlkit["@pixelkit-labs/mlkit"]
   native --> pixel["Pixel hardware"]
   mlkit --> pixel
-  template["pixelkit-template"] -. "start from" .-> app
-  cli["pixelkit doctor"] -. "diagnoses" .-> app
-  docs["pixelkit-docs"] -. "checked in CI" .-> sdk
 ```
 
 | Repository | What it is |
