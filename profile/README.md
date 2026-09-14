@@ -16,7 +16,7 @@
 ## What PixelKit is
 
 PixelKit is an SDK for building Expo and React Native applications on Google Pixel devices. It
-provides typed React hooks for device sensors, radios, secure hardware, camera and audio, display and
+provides typed React hooks for the CPU, GPU and TPU, device sensors, radios, secure hardware, camera and audio, display and
 power telemetry, haptics, on-device AI, and Cloud AI.
 
 Each hook calls a native Android API through one of two Kotlin Expo Modules and returns typed React
@@ -28,7 +28,8 @@ number the device did not produce.
 
 | Area | Examples |
 | :--- | :--- |
-| **Silicon and power** | CPU and GPU load, memory pressure, thermal headroom, battery health, system tracing |
+| **CPU, GPU and TPU** | CPU core topology, per-core clocks and load; GPU identity, frame pacing and jank; which accelerator on-device AI runs on, and how fast |
+| **Memory, power and thermals** | Memory pressure, thermal headroom, battery health and charging, system tracing |
 | **Sensors and actuators** | Motion and pressure, camera and vendor extensions, microphone array, torch, haptics |
 | **Radios and security** | Bluetooth and channel sounding, NFC, Wi-Fi 7 and RTT, satellite, GNSS, biometrics, hardware keystore, Play Integrity |
 | **System and media** | Display, audio and spatial audio, network and cellular, video, media library |
