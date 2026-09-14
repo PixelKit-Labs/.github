@@ -1,52 +1,94 @@
-
-<h1 align="center">PixelKit</h1>
+<h1 align="center">PixelKit Labs</h1>
 
 <p align="center">
-  PixelKit is an SDK for building Expo and React Native applications on Google Pixel devices.
-  It provides typed React hooks for device sensors, radios, secure hardware, camera and audio,
-  display and power telemetry, haptics, on-device AI, and Cloud AI.
+  PixelKit Labs builds PixelKit: an SDK, a reference app, and developer tools for building Expo and
+  React Native applications on Google Pixel devices.
 </p>
+
+<p align="center">
+  <a href="https://pixelkit-labs.github.io/pixelkit-docs/">Documentation</a>
+  &middot;
+  <a href="https://github.com/PixelKit-Labs/pixelkit-template">Start from the template</a>
+  &middot;
+  <a href="https://www.npmjs.com/org/pixelkit-labs">npm</a>
+</p>
+
+## What PixelKit is
+
+PixelKit is an SDK for building Expo and React Native applications on Google Pixel devices. It
+provides typed React hooks for device sensors, radios, secure hardware, camera and audio, display and
+power telemetry, haptics, on-device AI, and Cloud AI.
+
+Each hook calls a native Android API through one of two Kotlin Expo Modules and returns typed React
+state. Every value also reports where it came from: `hardware`, `derived`, or `unavailable`. When a
+reading cannot be taken, the hook returns `null` instead of a placeholder, so an app never shows a
+number the device did not produce.
+
+## What you can build with it
+
+| Area | Examples |
+| :--- | :--- |
+| **Silicon and power** | CPU and GPU load, memory pressure, thermal headroom, battery health, system tracing |
+| **Sensors and actuators** | Motion and pressure, camera and vendor extensions, microphone array, torch, haptics |
+| **Radios and security** | Bluetooth and channel sounding, NFC, Wi-Fi 7 and RTT, satellite, GNSS, biometrics, hardware keystore, Play Integrity |
+| **System and media** | Display, audio and spatial audio, network and cellular, video, media library |
+| **AI** | Gemini Nano on AICore, ML Kit vision and language, speech, embeddings, cloud Gemini, AppFunctions |
+| **Pixel Pro hardware** | The HiLight camera-bar LEDs, UWB ranging |
+
+## How the pieces fit
+
+```mermaid
+flowchart LR
+  app["Your Expo app"] --> sdk["@pixelkit-labs/sdk"]
+  sdk --> native["@pixelkit-labs/native"]
+  sdk --> mlkit["@pixelkit-labs/mlkit"]
+  native --> pixel["Pixel hardware"]
+  mlkit --> pixel
+  template["pixelkit-template"] -. "start from" .-> app
+  cli["pixelkit doctor"] -. "diagnoses" .-> app
+  docs["pixelkit-docs"] -. "checked in CI" .-> sdk
+```
+
+| Repository | What it is |
+| :--- | :--- |
+| **[pixelkit-sdk](https://github.com/PixelKit-Labs/pixelkit-sdk)** | The SDK: the hooks, the two Kotlin Expo Modules, unit tests, and on-device test recipes |
+| **[pixelkit-template](https://github.com/PixelKit-Labs/pixelkit-template)** | A working Expo app with a screen for each hook. Press **Use this template** to start. |
+| **[pixelkit-docs](https://github.com/PixelKit-Labs/pixelkit-docs)** | The API reference and guides, and the hook definitions the SDK is checked against in CI |
+| **[pixelkit-cli](https://github.com/PixelKit-Labs/pixelkit-cli)** | `pixelkit doctor`: checks the device, the build and the packages when readings come back empty |
+
+## How it is built
+
+- **Nothing is simulated.** There is no `simulated` value in the type system, so a made-up reading
+  cannot be represented.
+- **Documented, or it does not build.** CI fails if a hook is exported without documentation, or
+  documented with a field its type does not have.
+- **Verified on real hardware.** Unit tests and cross-repository checks run on every push, and
+  ARTEMIS drives the reference app on a real Pixel.
+- **Observable.** Every call to hardware, the network or a native module is traced, timed and logged.
+
+## Requirements
+
+Android only, built for the Pixel 11 Pro, Pro Fold and Pro XL. Other Android devices report
+`unavailable` where the hardware is missing. PixelKit needs a development build
+(`npx expo run:android` or an EAS development profile), not Expo Go, because its native modules must
+be compiled into the app. Expo SDK 57, React Native 0.86.
+
+## Get started
 
 ```bash
 npx expo install @pixelkit-labs/sdk @pixelkit-labs/native
 ```
 
 ```tsx
-import { useCPU, useGemini } from '@pixelkit-labs/sdk';
-import { useGeminiNano } from '@pixelkit-labs/sdk/mlkit';
+import { useCPU } from '@pixelkit-labs/sdk';
+
+const cpu = useCPU(); // cpu.source: 'hardware' | 'derived' | 'unavailable'
 ```
-
-## Repositories
-
-| | |
-| :--- | :--- |
-| **[pixelkit-sdk](https://github.com/PixelKit-Labs/pixelkit-sdk)** | The SDK and the two Kotlin Expo Modules. 51 hooks. |
-| **[pixelkit-template](https://github.com/PixelKit-Labs/pixelkit-template)** | A working Expo app wired to every hook. Press **Use this template** to start. |
-| **[pixelkit-docs](https://github.com/PixelKit-Labs/pixelkit-docs)** | Source of the [documentation site](https://pixelkit-labs.github.io/pixelkit-docs/), and the contract the SDK is checked against in CI. |
-| **[pixelkit-cli](https://github.com/PixelKit-Labs/pixelkit-cli)** | `pixelkit doctor`, for when a reading comes back empty and you want to know why. |
-
-## Packages
-
-| Package | What it is |
-| :--- | :--- |
-| [`@pixelkit-labs/sdk`](https://www.npmjs.com/package/@pixelkit-labs/sdk) | The hooks, types, design system and observability layer |
-| [`@pixelkit-labs/native`](https://www.npmjs.com/package/@pixelkit-labs/native) | Kotlin module for telemetry and actuators. No third-party dependencies. |
-| [`@pixelkit-labs/mlkit`](https://www.npmjs.com/package/@pixelkit-labs/mlkit) | Kotlin module for Gemini Nano and ML Kit. Opt-in, because it adds 19 artifacts to your APK. |
-| [`@pixelkit-labs/cli`](https://www.npmjs.com/package/@pixelkit-labs/cli) | `pixelkit doctor` |
-
-## Before you start
-
-**It needs a development build.** `npx expo run:android`, or an EAS development profile. PixelKit
-cannot run in Expo Go: reading a thermal sensor takes native code compiled into the app, and Expo Go
-only contains the native code Expo shipped.
-
-It degrades rather than fails on other hardware: 13 of the 51 hooks are pure Expo and JavaScript and
-work on any Android device, and the rest report `unsupported` where the silicon is not there.
 
 <p align="center">
   <a href="https://pixelkit-labs.github.io/pixelkit-docs/">Documentation</a>
   &middot;
-  <a href="https://github.com/PixelKit-Labs/pixelkit-template">Start from the template</a>
+  <a href="https://github.com/PixelKit-Labs/pixelkit-template">Template</a>
   &middot;
   <a href="https://github.com/PixelKit-Labs/pixelkit-sdk/issues/new?labels=bug">Report a bug</a>
 </p>
