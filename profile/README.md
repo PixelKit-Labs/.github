@@ -1,7 +1,7 @@
 <h1 align="center">PixelKit Labs</h1>
 
 <p align="center">
-  PixelKit Labs builds PixelKit: an SDK, a reference app, and developer tools for building Expo and
+PixelKit: an SDK, a reference app, and developer tools for building Expo and
   React Native applications on Google Pixel devices.
 </p>
 
